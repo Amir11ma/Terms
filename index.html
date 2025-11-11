@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>مترجم AI</title>
+<style>
+  body{font-family:sans-serif;background:#0f1724;color:#e6eef8;padding:10px;width:360px;margin:auto;}
+  textarea{width:100%;height:80px;margin:5px 0;padding:8px;border-radius:6px;border:none;background:#1a202c;color:#fff;font-size:14px;}
+  button{padding:8px 12px;border:none;border-radius:6px;background:#7c3aed;color:#fff;cursor:pointer;margin-top:5px;width:100%;}
+  #outputText{background:#111827;}
+</style>
+</head>
+<body>
+<h3>مترجم AI کوچک</h3>
+<textarea id="inputText" placeholder="متن خود را وارد کنید..."></textarea>
+<button onclick="translate()">ترجمه کن</button>
+<textarea id="outputText" placeholder="نتیجه ترجمه..." readonly></textarea>
+
+<script>
+async function translate(){
+  const text = document.getElementById('inputText').value.trim();
+  if(!text){alert('لطفاً متن را وارد کنید.'); return;}
+  const isPersian = /[آ-ی]/.test(text);
+  const target = isPersian ? 'en' : 'fa';
+  try{
+    const res = await fetch('https://libretranslate.com/translate',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({q:text, source:'auto', target:target})
+    });
+    const data = await res.json();
+    document.getElementById('outputText').value = data.translatedText || 'خطا در ترجمه';
+  }catch(e){
+    console.error(e);
+    document.getElementById('outputText').value = 'خطا در ترجمه، اتصال اینترنت را بررسی کنید';
+  }
+}
+</script>
+</body>
+</html>
