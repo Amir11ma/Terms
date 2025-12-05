@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="fa">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Coin Catcher - Dev</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/ui.css">
+  <link rel="stylesheet" href="css/player.css">
+</head>
+<body>
+  <div id="uiTop">
+    <h1>Coin Catcher</h1>
+    <div class="controls">
+      <button id="pauseBtn" class="btn">⏸</button>
+      <div id="shop" class="btn">🛒</div>
+      <button id="restartBtn" class="btn">🔁</button>
+    </div>
+  </div>
+
+  <div id="infoBar">
+    <div id="scoreBoard">سکه‌ها: 0 | جان: 3 | کل: 0</div>
+    <div id="healthBar"><div id="healthFill"></div></div>
+  </div>
+
+  <div id="gameWrapper">
+    <div id="gameContainer"></div>
+  </div>
+
+  <div id="bottomSafe"></div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
